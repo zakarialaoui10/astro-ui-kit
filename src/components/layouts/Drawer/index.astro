@@ -1,0 +1,64 @@
+---
+// src/pages/index.astro
+import './index.css'
+---
+<html lang="en">
+  <head>
+   <slot name="head"></slot>
+    
+  </head>
+  <body>
+    <header>
+      <button class="toggle-btn" id="drawer-toggle">
+        <svg id="hamburger" viewBox="0 0 24 24">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg id="close" viewBox="0 0 24 24" style="display:none;">
+          <path d="M6 6l12 12M6 18L18 6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <slot name="header"></slot>
+    </header>
+
+    <aside class="drawer" id="drawer">
+      <slot name="aside"></slot>
+    </aside>
+
+    <main id="main">
+      <slot name="main"></slot>
+    </main>
+
+    <script>
+      const drawer = document.getElementById('drawer');
+      const main = document.getElementById('main');
+      const toggleBtn = document.getElementById('drawer-toggle');
+      const hamburger = document.getElementById('hamburger');
+      const closeIcon = document.getElementById('close');
+
+      function openDrawer() {
+        drawer?.classList.add('open');
+        main?.classList.add('shift');
+        hamburger && Object.assign(hamburger.style, {display : 'none'})
+        closeIcon && Object.assign(closeIcon.style, {display : 'block' })
+      }
+
+      function closeDrawer() {
+        drawer?.classList.remove('open');
+        main?.classList.remove('shift');
+        hamburger && Object.assign(hamburger.style, {display : 'block'})
+        closeIcon && Object.assign(closeIcon.style, {display : 'none' })
+      }
+
+      toggleBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        drawer?.classList.contains('open') ? closeDrawer() : openDrawer()
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!drawer?.contains(e.target) && !toggleBtn.contains(e.target)) {
+          closeDrawer();
+        }
+      });
+    </script>
+  </body>
+</html>

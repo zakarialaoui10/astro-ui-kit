@@ -1,0 +1,25 @@
+{
+  "name": "astrojs-ui-kit",
+  "version": "0.0.0",
+  "description": "",
+  "homepage": "https://github.com/zakarialaoui10/astrojs-ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/zakarialaoui10/astrojs-ui-kit/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakarialaoui10/astrojs-ui-kit.git"
+  },
+  "license": "MIT",
+  "author": "zakaria elalaoui",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "exports": {
+    "./components/*":{
+      "import" : "./src/components/*/index.js"
+    }
+  }
+}

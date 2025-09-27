@@ -1,4 +1,4 @@
-# Astro UI Kit
+# Astrojs UI Kit
 
 ### Layouts
   - Drawer
